@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+       comment
+    </title>
+</head>
+
+<body>
+    <h1>a simple comment</h1>
+ 
+{% for c in comment %}
+<p>{{ c.name }}</p>
+<p>{{ c.content }}</p> 
+{% endfor %}
+ {% block article %} 
+ 
+ <form action="" method="post">
+     {% csrf_token %} 
+     <div class="field">
+         <label for="id_name">Title: </label>
+         {% if form.name.errors %}
+         <div class="alert alert-error">
+             {{ form.name.errors }}          
+         </div>
+         {% endif %}
+         {{ form.name }}
+     </div>
+     <div class="field">        
+         <label for="id_content">Content: </label>
+         {% if form.content.errors %}
+         <div class="alert alert-error">
+             {{ form.content.errors }}
+         </div>
+         {% endif %}
+         {{ form.content }}
+     </div>
+     <div class="form-actions">
+         <input class="btn btn-primary" type="submit" value="save and add">
+     </div>
+ </form>
+ {% endblock %}
+
+</body>
+</html>

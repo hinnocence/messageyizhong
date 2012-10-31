@@ -1,0 +1,88 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>hello</title>
+
+<link href="/site_media/static/default.css" media ="screen" type="text/css" rel="stylesheet" charset="utf-8">
+
+
+</head>
+<body>
+<div id="header">
+	<h1><a href="#">留言板</a></h1>
+	<h2><a href="http://www.cssk8.com/">by cssk8</a></h2>
+</div>
+<div id="pages">
+	
+	<ul>
+		<li class="active"></li>
+		
+	</ul>
+</div>
+<div id="content">
+	<div id="posts">
+                 {% for c in comment %}
+
+
+		<div class="post">
+			<h2 class="title">{{c.subject}}</h2>
+			<h3 class="posted">{{c.datetime}}</h3>
+			<div class="story">
+				<p>{{ c.content }}</p>
+			</div>
+			<div class="meta">
+				<p>{{ c.name }}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div id="message" class="yellownotes">
+		<h2 class="heading">leave a message</h2>
+		<div class="content">
+			<form action="" method="post">
+     {% csrf_token %} 
+     <div class="field">
+         <label for="id_name">N a m e: </label>
+         {% if form.name.errors %}
+         <div class="alert alert-error">
+             {{ form.name.errors }}          
+         </div>
+         {% endif %}
+         {{ form.name }}
+     </div>
+     <div class="field">
+         <label for="id_subject">Subject: </label>
+         {% if form.subject.errors %}
+         <div class="alert alert-error">
+             {{ form.subject.errors }}
+         </div>
+         {% endif %}
+         {{ form.subject}}
+     </div>
+
+     <div class="field">        
+         <label for="id_content">Content: </label>
+         {% if form.content.errors %}
+         <div class="alert alert-error">
+             {{ form.content.errors }}
+         </div>
+         {% endif %}
+         {{ form.content }}
+     </div>
+     <div class="form-actions">
+         <input class="btn btn-primary" type="submit" value="save and add">
+     </div>
+ </form>
+		</div>
+	</div>
+	
+	
+<div id="footer">
+	<p>Copyright &copy; 2008 Sticky Notes. Designed by <a href="http://www.cssk8.com/"><strong>cssk8</strong></a>from<a href="http://www.freecsstemplates.org/"><strong>Free CSS Templates</strong></a>andlinkstomyfriends<a href="http://www.9aifree.com/"><strong>ŸÍ°®Ãâ·ÑÍø</strong></a></p>
+</div>
+</body>
+</html>
